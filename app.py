@@ -1,4 +1,4 @@
-from flask import Flask, abort
+from flask import Flask, abort, render_template
 from utils import number_of_leap_years
 from datetime import datetime, timedelta, date, tzinfo
 
@@ -20,19 +20,25 @@ def life_info_page(date_of_birth):
 
     today = date.today()
 
+    life_info = {'date_of_birth': date_of_birth}
+
     lived = today - date_of_birth
+    life_info['lived_days'] = lived.days
+
     ages = (lived.days - number_of_leap_years(date_of_birth)) // 365
+    life_info['ages'] = ages
+
     lived_percentage = round(lived / timedelta(days=365*78) * 100, 2)
-    have_to_live = timedelta(days=365*78) - lived
+    life_info['lived_percentage'] = lived_percentage
+
+    left = timedelta(days=365*78) - lived
+    life_info['left_days'] = left.days
+
     next_birthday_date = date(date_of_birth.year + ages + 1, date_of_birth.month, date_of_birth.day)
     to_next_birthday = next_birthday_date - today
+    life_info['to_next_birthday'] = to_next_birthday.days
 
-    return f"You are now {ages} years old" \
-        f"<br>You've born on {date_of_birth.strftime('%A')}" \
-        f"<br>Lived: {lived.days} days" \
-        f"<br>Have: {have_to_live.days} days" \
-        f"<br>Percents: {lived_percentage}%" \
-        f"<br>To next birthday: {to_next_birthday.days}"
+    return render_template('life_info.html', life_info=life_info)
 
 
 if __name__ == '__main__':
