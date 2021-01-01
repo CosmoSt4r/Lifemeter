@@ -5,11 +5,14 @@
   <title>{{ life_info['date_of_birth'] }}</title>
 </head>
 <body>
+  {% if life_info['today_is_birthday'] %}
+    Happy birthday!<br>
+  {% endif %}
   <br>You are now {{ life_info['ages'] }} years old
   <br>You've born on {{ life_info['date_of_birth'].strftime('%A') }}
   <br>Lived: {{ life_info['lived_days'] }} days
   <br>Left: {{ life_info['left_days'] }} days
   <br>Percents: {{ life_info['lived_percentage'] }}%
-  <br>To next birthday: {{ life_info['to_next_birthday'] }}
+  <br>To next birthday: {{ life_info['to_next_birthday'] }} days
 </body>
 </html>
