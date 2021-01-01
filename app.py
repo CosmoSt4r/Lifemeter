@@ -10,7 +10,7 @@ def index():
     return 'Hello World!'
 
 
-@app.route('/<date_of_birth>')
+@app.route('/<date_of_birth>/')
 def life_info_page(date_of_birth):
 
     try:

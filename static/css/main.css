@@ -1,0 +1,36 @@
+@font-face {
+  font-family: Poppins;
+  src: url('../fonts/Poppins-Regular.ttf');
+}
+
+body {
+  font-family: Poppins, sans-serif;
+}
+
+.ct-chart {
+  display: inline-block;
+  margin: auto;
+  width: 500px;
+  height: 400px;
+  stroke-width: 2px;
+}
+
+#chart1 .ct-label {
+  font-size: 20px;
+  stroke-width: 0;
+  fill: black;
+}
+
+#chart1 .ct-series-a .ct-slice-donut-solid {
+  fill: lightblue;
+}
+
+#chart1 .ct-series-b .ct-slice-donut-solid {
+  fill: blue;
+}
+
+#chart2 .ct-label {
+  font-size: 20px;
+  stroke-width: 0;
+  fill: black;
+}

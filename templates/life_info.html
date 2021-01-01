@@ -2,8 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+
   <title>{{ life_info['date_of_birth'] }}</title>
 </head>
+
 <body>
   {% if life_info['today_is_birthday'] %}
     Happy birthday!<br>
@@ -14,5 +19,34 @@
   <br>Left: {{ life_info['left_days'] }} days
   <br>Percents: {{ life_info['lived_percentage'] }}%
   <br>To next birthday: {{ life_info['to_next_birthday'] }} days
+
+  <div class="ct-chart ct-double-octave" id="chart1"></div>
+  <div class="ct-chart ct-double-octave" id="chart2"></div>
+  <script>
+  new Chartist.Pie('#chart1', {
+    series: [18, 60],
+    labels: ['18 years', '60 years']
+  }, {
+    donut: true,
+    donutWidth: 60,
+    donutSolid: true,
+    startAngle: 0,
+    showLabel: true,
+    chartPadding: 30,
+    labelOffset: 50,
+    labelDirection: 'explode',
+  });
+
+  new Chartist.Pie('#chart2', {
+    series: [12, 32, 32]
+  }, {
+    donut: true,
+    donutWidth: 60,
+    donutSolid: true,
+    startAngle: 0,
+    showLabel: true
+  });
+  </script>
 </body>
+
 </html>
