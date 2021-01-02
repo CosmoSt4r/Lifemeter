@@ -10,27 +10,21 @@ body {
 .ct-chart {
   display: inline-block;
   margin: auto;
-  width: 500px;
+  width: 512px;
   height: 400px;
-  stroke-width: 2px;
 }
 
-#chart1 .ct-label {
+#chart1 .ct-label, #chart2 .ct-label, #chart3 .ct-label {
   font-size: 20px;
-  stroke-width: 0;
   fill: black;
 }
 
-#chart1 .ct-series-a .ct-slice-donut-solid {
+#chart1 .ct-series-a .ct-slice-donut-solid, #chart2 .ct-series-a .ct-slice-donut-solid,
+#chart3 .ct-series-a .ct-slice-donut-solid {
   fill: lightblue;
 }
 
-#chart1 .ct-series-b .ct-slice-donut-solid {
+#chart1 .ct-series-b .ct-slice-donut-solid, #chart2 .ct-series-b .ct-slice-donut-solid,
+#chart3 .ct-series-a .ct-slice-donut-solid {
   fill: blue;
-}
-
-#chart2 .ct-label {
-  font-size: 20px;
-  stroke-width: 0;
-  fill: black;
 }

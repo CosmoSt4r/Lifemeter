@@ -10,22 +10,26 @@
 </head>
 
 <body>
-  {% if life_info['today_is_birthday'] %}
-    Happy birthday!<br>
-  {% endif %}
-  <br>You are now {{ life_info['ages'] }} years old
-  <br>You've born on {{ life_info['date_of_birth'].strftime('%A') }}
-  <br>Lived: {{ life_info['lived_days'] }} days
-  <br>Left: {{ life_info['left_days'] }} days
-  <br>Percents: {{ life_info['lived_percentage'] }}%
-  <br>To next birthday: {{ life_info['to_next_birthday'] }} days
 
+  {% if life_info['today_is_birthday'] %}
+    <h1>Happy birthday!</h1>
+  {% endif %}
+  <p>You are now {{ life_info['ages'] }} years old</p>
+  <p>Lived: {{ life_info['lived_days'] }} days</p>
+  <p>Left: {{ life_info['left_days'] }} days</p>
   <div class="ct-chart ct-double-octave" id="chart1"></div>
+
+  <p>You've born on {{ life_info['date_of_birth'].strftime('%A') }}</p>
+  <p>Percents: {{ life_info['lived_percentage'] }}%</p>
   <div class="ct-chart ct-double-octave" id="chart2"></div>
+
+  <p>To next birthday: {{ life_info['to_next_birthday'] }} days</p>
+  <div class="ct-chart ct-double-octave" id="chart3"></div>
+
   <script>
   new Chartist.Pie('#chart1', {
-    series: [18, 60],
-    labels: ['18 years', '60 years']
+    series: [{{ life_info['ages'] }}, {{ life_info['life_expectancy'] - life_info['ages'] }}],
+    labels: ['{{ life_info['ages'] }} years', '{{ life_info['life_expectancy'] - life_info['ages'] }} years']
   }, {
     donut: true,
     donutWidth: 60,
@@ -38,13 +42,31 @@
   });
 
   new Chartist.Pie('#chart2', {
-    series: [12, 32, 32]
+    series: [{{ life_info['lived_percentage'] }}, {{ life_info['remain_life_percentage'] }}],
+    labels: ['{{ life_info['lived_percentage'] }}%', '{{ life_info['remain_life_percentage'] }}%']
   }, {
     donut: true,
     donutWidth: 60,
     donutSolid: true,
     startAngle: 0,
-    showLabel: true
+    showLabel: true,
+    chartPadding: 30,
+    labelOffset: 50,
+    labelDirection: 'explode',
+  });
+
+  new Chartist.Pie('#chart3', {
+    series: [{{ 365 - life_info['to_next_birthday'] }}, {{ life_info['to_next_birthday'] }}],
+    labels: ['{{ 365 - life_info['to_next_birthday'] }}', '{{ life_info['to_next_birthday'] }}']
+  }, {
+    donut: true,
+    donutWidth: 60,
+    startAngle: 270,
+    total: 365*2,
+    showLabel: true,
+    chartPadding: 30,
+    labelOffset: 50,
+    labelDirection: 'explode',
   });
   </script>
 </body>
