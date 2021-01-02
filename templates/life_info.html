@@ -15,12 +15,12 @@
     <h1>Happy birthday!</h1>
   {% endif %}
   <p>You are now {{ life_info['ages'] }} years old</p>
-  <p>Lived: {{ life_info['lived_days'] }} days</p>
-  <p>Left: {{ life_info['left_days'] }} days</p>
+  <p>You lived {{ life_info['lived_days'] }} days</p>
+  <p>You have {{ life_info['left_days'] }} days left</p>
   <div class="ct-chart ct-double-octave" id="chart1"></div>
 
   <p>You've born on {{ life_info['date_of_birth'].strftime('%A') }}</p>
-  <p>Percents: {{ life_info['lived_percentage'] }}%</p>
+  <p>You lived {{ life_info['lived_percentage'] }}% of your life</p>
   <div class="ct-chart ct-double-octave" id="chart2"></div>
 
   <p>To next birthday: {{ life_info['to_next_birthday'] }} days</p>
